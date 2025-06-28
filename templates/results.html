@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados - Evaluación de Salud Mental</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Enlace a Google Fonts para Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+    <!-- FontAwesome para íconos si se necesitan en esta página -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="background-gradient"></div> <!-- Fondo degradado animado -->
+    <div class="content-wrapper"> <!-- Wrapper para el contenido -->
+        <div class="container mt-5 p-4 rounded-3 shadow-lg form-container">
+            <h1 class="text-center mb-5 app-title">
+                <i class="fas fa-chart-bar me-3"></i>Resultados de la Evaluación
+            </h1>
+
+            <div class="card animated-card"> <!-- Aplicar clase animated-card aquí también -->
+                <div class="card-header bg-primary text-white">
+                    Resultados de la Evaluación
+                </div>
+                <div class="card-body text-center">
+                    {% if error %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ error }}
+                        </div>
+                    {% else %}
+                        <h2 class="mb-4">Su resultado:</h2>
+                        <div class="result-display mb-4">
+                            <h3 class="{{ 'text-danger' if result == 'Preocupación por salud mental' else 'text-success' }}">
+                                {{ result }}
+                            </h3>
+                            <p class="text-muted">Confianza: {{ confidence }}</p>
+                        </div>
+                        
+                        <div class="card mb-4 animated-card"> <!-- También aplicar aquí -->
+                            <div class="card-body">
+                                <h4>Recomendaciones:</h4>
+                                {% if result == 'Preocupación por salud mental' %}
+                                    <p>Basado en sus respuestas, podría beneficiarse de hablar con un profesional de salud mental.</p>
+                                    <ul class="text-start">
+                                        <li>Considere buscar ayuda profesional</li>
+                                        <li>Hable con alguien de confianza sobre cómo se siente</li>
+                                        <li>Explore recursos de salud mental en su área</li>
+                                    </ul>
+                                {% else %}
+                                    <p>Sus respuestas no indican preocupaciones significativas, pero siempre es bueno cuidar su salud mental.</p>
+                                    <ul class="text-start">
+                                        <li>Mantenga hábitos saludables</li>
+                                        <li>No dude en buscar ayuda si necesita apoyo</li>
+                                        <li>Esté atento a su bienestar emocional</li>
+                                    </ul>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endif %}
+                    
+                    <!-- Contenedor del gráfico, ahora con la clase chart-container -->
+                    <div class="chart-container mb-4">
+                        <canvas id="resultChart"></canvas>
+                        <div id="confidenceValue" style="display: none;">{{ confidence|replace('%','') }}</div>
+                    </div>
+
+                    <a href="/" class="btn btn-primary submit-button">Volver al inicio</a> <!-- Clase submit-button para el botón -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Añade estas librerías al final del body -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/static/js/script.js"></script>
+</body>
+</html>

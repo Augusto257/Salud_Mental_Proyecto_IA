@@ -1,0 +1,253 @@
+/* Estilos generales */
+body {
+    font-family: 'Inter', sans-serif; /* Usando la fuente Inter */
+    background-color: #f8f9fa;
+    color: #343a40;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Evitar scroll horizontal */
+    min-height: 100vh; /* Asegura que el body ocupe al menos toda la altura de la ventana */
+    display: flex; /* Para centrar el contenido verticalmente */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Para el fondo degradado animado */
+    z-index: 1;
+}
+
+/* --- NUEVOS ESTILOS: Fondo Degradado Animado --- */
+.background-gradient {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #3b52d3 0%, #104196 100%); /* Degradado violeta a azul */
+    animation: gradientAnimation 15s ease infinite; /* Animación de 15 segundos */
+    background-size: 200% 200%; /* Para que la animación sea más suave */
+    z-index: -1; /* Asegura que esté detrás del contenido */
+    opacity: 0.8; /* Un poco de transparencia */
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Wrapper para el contenido para asegurar que esté sobre el fondo animado */
+.content-wrapper {
+    position: relative;
+    z-index: 2;
+    padding: 20px; /* Espaciado general para el contenido */
+    width: 100%; /* Ocupa el 100% del ancho */
+    max-width: 900px; /* Un poco más de ancho para el formulario si es necesario */
+}
+
+/* Contenedor del formulario principal */
+.form-container {
+    background-color: rgba(255, 255, 255, 0.95); /* Fondo blanco con ligera transparencia */
+    padding: 30px;
+    border-radius: 15px; /* Bordes más redondeados */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+    backdrop-filter: blur(5px); /* Efecto de desenfoque detrás del contenedor */
+    -webkit-backdrop-filter: blur(5px);
+}
+
+/* --- NUEVOS ESTILOS: Encabezado de la Aplicación --- */
+.app-title {
+    color: #2c3e50; /* Un color oscuro para el texto del título */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra de texto sutil */
+    font-weight: 700; /* Más negrita */
+    font-size: 2.5rem; /* Tamaño de fuente más grande */
+}
+
+.app-title i {
+    color: #4e73df; /* Color primario para el ícono */
+}
+
+/* --- Estilos de Tarjetas --- */
+.card {
+    border-radius: 12px; /* Bordes más redondeados */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombra mejorada */
+    margin-bottom: 25px;
+    border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición para efecto hover */
+    background-color: #ffffff; /* Fondo blanco explícito */
+}
+
+/* Efecto Hover para las tarjetas */
+.animated-card:hover {
+    transform: translateY(-5px); /* Ligeramente hacia arriba */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25); /* Sombra más grande al pasar el mouse */
+}
+
+.card-header {
+    border-radius: 12px 12px 0 0 !important;
+    font-weight: 700; /* Más negrita */
+    font-size: 1.25rem; /* Tamaño de fuente más grande */
+    background: linear-gradient(45deg, #4e73df, #2575fc); /* Degradado en el encabezado de la tarjeta */
+    color: white; /* Texto blanco */
+    padding: 15px 20px;
+}
+
+.card-body {
+    padding: 25px;
+}
+
+/* --- Botón de Evaluación (Submit) --- */
+.submit-button {
+    background: linear-gradient(45deg, #4e73df, #2575fc); /* Degradado en el botón */
+    border: none;
+    padding: 12px 30px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-radius: 30px; /* Botón más redondeado */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para el botón */
+    transition: all 0.3s ease; /* Transición para efecto hover */
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.submit-button:hover {
+    transform: translateY(-3px); /* Ligeramente hacia arriba */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Sombra más grande */
+    background: linear-gradient(45deg, #2575fc, #4e73df); /* Invierte el degradado o cambia ligeramente */
+}
+
+/* Efecto brillante al hacer hover en el botón */
+.submit-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3); /* Blanco semitransparente */
+    transform: skewX(-30deg);
+    transition: all 0.7s ease;
+    z-index: -1;
+}
+
+.submit-button:hover::before {
+    left: 100%;
+}
+
+
+/* Estilos de elementos de formulario */
+.form-label {
+    font-weight: 600; /* Más negrita */
+    margin-bottom: 8px; /* Más espacio */
+    color: #5a5a5a; /* Un color de texto más suave */
+}
+
+.form-control, .form-select {
+    border-radius: 8px; /* Bordes más redondeados */
+    padding: 12px; /* Más padding */
+    border: 1px solid #ced4da;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05); /* Sombra interna sutil */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #4e73df;
+    box-shadow: 0 0 0 0.3rem rgba(78, 115, 223, 0.35); /* Sombra de enfoque más vibrante */
+}
+
+/* Resultados */
+.result-display {
+    padding: 25px;
+    background-color: #e9ecef; /* Un gris ligeramente más oscuro */
+    border-radius: 12px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08); /* Sombra sutil */
+}
+
+.result-display h2 {
+    font-weight: 700;
+    color: #34495e;
+}
+
+.result-display h3 {
+    font-size: 2rem; /* Más grande */
+    font-weight: 800; /* Extra negrita */
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.result-display p {
+    font-size: 1.1rem;
+    color: #6c757d;
+}
+
+.text-danger {
+    color: #dc3545 !important; /* Rojo de Bootstrap */
+}
+
+.text-success {
+    color: #28a745 !important; /* Verde de Bootstrap */
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .card-body {
+        padding: 15px;
+    }
+    .app-title {
+        font-size: 1.8rem; /* Ajustar tamaño para móviles */
+    }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Aplicar la animación al cargar la página */
+body {
+    animation: fadeIn 0.8s ease-out; /* Animación general al cargar */
+}
+
+/* Animación individual para cada tarjeta */
+.animated-card {
+    opacity: 0; /* Inicialmente ocultas */
+    animation: fadeIn 0.6s ease-out forwards; /* forwards para mantener el estado final */
+    animation-delay: var(--delay); /* Usaremos una variable CSS para el retraso */
+}
+
+/* Asignar retrasos a las tarjetas (ejemplo en JavaScript o en el HTML con style="--delay: 0.2s;") */
+/* Para este ejemplo, te sugiero añadir style="--delay: X.Xs;" a cada card directamente en index.html
+   o usar JavaScript para aplicarlo, como lo harías con el Chart.js.
+   Para simplificar, no lo estoy añadiendo en el HTML. Si quieres un delay por tarjeta, me avisas.
+   Por ahora, el fade-in general del body y el hover ya dan un buen efecto.
+*/
+
+/* Barra de progreso (opcional, si aún la usas) */
+.progress {
+    height: 12px;
+    border-radius: 6px;
+    margin: 20px 0;
+    background-color: #e9ecef;
+}
+
+.progress-bar {
+    background-color: #4e73df;
+    border-radius: 6px;
+}
+
+/* Estilos para el gráfico (si es necesario un contenedor específico) */
+.chart-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    max-width: 400px; /* Limitar el ancho del gráfico */
+    margin: 20px auto; /* Centrar el gráfico */
+}
