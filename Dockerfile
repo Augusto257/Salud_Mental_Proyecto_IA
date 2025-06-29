@@ -26,4 +26,4 @@ EXPOSE 10000
 
 # Comando para iniciar la aplicación con Gunicorn
 # Usa la variable de entorno $PORT que Render inyecta
-CMD ["gunicorn", "--bind", "0.0.0.0:$PORT", "app:app"]
+CMD ["sh", "-c", "gunicorn --bind 0.0.0.0:$PORT app:app"]
